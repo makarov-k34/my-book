@@ -1,0 +1,48 @@
+version: '3.3'
+
+networks:
+  textprocess_network:
+    driver: bridge
+
+services:
+
+  textprocess_rmq:
+    container_name: textprocess_rmq
+    image: rabbitmq:3.9.20-management
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_VHOST: 'rmq_textprocess'
+      RABBITMQ_DEFAULT_USER: 'rmq_textprocess'
+      RABBITMQ_DEFAULT_PASS: 'rmq_textprocess123'
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+      interval: 5s
+      timeout: 15s
+      retries: 5
+    networks:
+      - textprocess_network
+    ports:
+      - '15672:15672'
+
+  textprocess_db:
+    container_name: textprocess_db
+    image: postgres:14.4
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      POSTGRES_USER: se_textprocess
+      POSTGRES_PASSWORD: se_textprocess123
+      POSTGRES_DB: se_textprocess
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - textprocess_network
+    ports:
+      - '51432:5432'
+
+volumes:
+  db:

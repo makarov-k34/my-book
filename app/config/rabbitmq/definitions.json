@@ -1,0 +1,43 @@
+{
+  "bindings": [],
+  "exchanges": [],
+  "global_parameters": [],
+  "parameters": [],
+  "permissions": [
+    {
+      "configure": ".*",
+      "read": ".*",
+      "user": "ouz-user",
+      "vhost": "ouz",
+      "write": ".*"
+    },
+    {
+      "configure": ".*",
+      "read": ".*",
+      "user": "ouz_admin",
+      "vhost": "ouz",
+      "write": ".*"
+    }
+  ],
+  "policies": [],
+  "queues": [],
+  "rabbit_version": "3.9",
+  "topic_permissions": [],
+  "users": [
+    {
+      "name": "ouz-user",
+      "password": "ouz-password",
+      "tags": "management"
+    },
+    {
+      "name": "ouz_admin",
+      "password": "ouz_admin123",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "ouz"
+    }
+  ]
+}
