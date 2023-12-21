@@ -17,7 +17,7 @@ from app.services.process_data_from_db_service import ProcessDataFromDatabase
 router = APIRouter(prefix="/load-data")
 
 
-@router.post(
+@router.get(
     "/get-data",
     response_model=response.ResponseReturnData,
 )

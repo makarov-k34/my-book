@@ -34,14 +34,13 @@ def create_app():
 
 
 def main():
-    try:
-        uvicorn.run(
-            f"main:create_app",
-            host=settings.server_host,
-            port=settings.server_port,
-        )
-    except Exception as e:
-        print(e)
+
+    uvicorn.run(
+        f"main:create_app",
+        host=settings.server_host,
+        port=settings.server_port,
+    )
+
 
 if __name__ == "__main__":
     main()
